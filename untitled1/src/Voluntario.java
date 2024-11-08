@@ -1,8 +1,8 @@
-public class Funcionario extends Pessoa{
+public class Voluntario extends Pessoa{
     
     private String funcao;
 
-    public Funcionario(String nome, String profissao, String genero, int idade, String funcao) {
+    public Voluntario(String nome, String profissao, String genero, int idade, String funcao) {
 
         super(nome, profissao, genero, idade);
         this.funcao = funcao;
@@ -19,7 +19,6 @@ public class Funcionario extends Pessoa{
     
     @Override
     public void mostrarDados() {
-
         super.mostrarDados();
         System.out.println("Função: " + funcao);
 
