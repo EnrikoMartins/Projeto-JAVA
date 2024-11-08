@@ -1,3 +1,5 @@
+
+
 public class Voluntario extends Pessoa{
     
     private String funcao;
