@@ -1,10 +1,12 @@
 public class Animal {
+    private int id;
     private String nome;
     private String raca;
     private int idade;
     private String genero;
 
     public Animal(String nome, String raca, int idade, String genero) {
+        this.id = id;
         this.nome = nome;
         this.raca = raca;
         this.idade = idade;
@@ -13,6 +15,14 @@ public class Animal {
 
     public String getGenero() {
         return genero;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setGenero(String genero) {

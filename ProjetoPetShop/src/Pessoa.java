@@ -1,18 +1,26 @@
 public abstract class Pessoa {
-    
+
+   private int id;
    private String nome;
    private String profissao;
    private String genero;
    private int idade;
 
    public Pessoa(String nome, String profissao, String genero ,int idade){
-
+    this.id = id;
     this.nome = nome;
     this.profissao = profissao;
     this.genero = genero;
     this.idade = idade;
    }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
