@@ -4,7 +4,7 @@ public class Animal {
     private String raca;
     private int idade;
     private String genero;
-    private bollean adotado;
+    private boolean adotado;
 
     public Animal(String nome, String raca, int idade, String genero) {
         this.id = id;
