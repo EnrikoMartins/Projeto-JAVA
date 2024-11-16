@@ -5,5 +5,9 @@ public class Adotante extends Pessoa {
         super(id, nome, profissao, genero, idade);
         this.animalAdotado = animalAdotado;
     }
-
+    public Animal getAnimalAdotado() {
+        return animalAdotado;
+    }
+     public void setAnimalAdotado(Animal animalAdotado) {
+        this.animalAdotado = animalAdotado;
 }
