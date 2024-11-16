@@ -10,4 +10,5 @@ public class Adotante extends Pessoa {
     }
      public void setAnimalAdotado(Animal animalAdotado) {
         this.animalAdotado = animalAdotado;
+    }
 }
