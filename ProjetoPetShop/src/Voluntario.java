@@ -4,9 +4,9 @@ public class Voluntario extends Pessoa{
     
     private String funcao;
 
-    public Voluntario(String nome, String profissao, String genero, int idade, String funcao) {
+    public Voluntario(int id, String nome, String profissao, String genero, int idade, String funcao) {
 
-        super(nome, profissao, genero, idade);
+        super(id, nome, profissao, genero, idade);
         this.funcao = funcao;
 
     }
