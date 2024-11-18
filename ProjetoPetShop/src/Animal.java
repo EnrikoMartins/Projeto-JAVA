@@ -5,14 +5,14 @@ public class Animal {
     private int idade;
     private String genero;
     private boolean adotado;
+    private String tipo;
 
-    public Animal(int id, String nome, String raca, int idade, String genero) {
-        this.id = id;
+    public Animal(String nome, String raca, int idade, String genero, String tipo) {
         this.nome = nome;
         this.raca = raca;
         this.idade = idade;
         this.genero = genero;
-        this.adotado = false;
+        this.tipo = tipo;
     }
 
     public String getGenero() {
@@ -63,6 +63,11 @@ public class Animal {
         this.adotado = adotado;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
 
-
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 }

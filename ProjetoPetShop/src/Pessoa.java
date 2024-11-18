@@ -6,8 +6,7 @@ public abstract class Pessoa {
    private String genero;
    private int idade;
 
-   public Pessoa(int id, String nome, String profissao, String genero ,int idade){
-    this.id = id;
+   public Pessoa(String nome, String profissao, String genero ,int idade){
     this.nome = nome;
     this.profissao = profissao;
     this.genero = genero;
