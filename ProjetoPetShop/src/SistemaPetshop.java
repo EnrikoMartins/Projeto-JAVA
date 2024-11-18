@@ -27,78 +27,57 @@ public class SistemaPetshop {
         return resposta;
     }
 
-    private void listarAnimais(List<Animal> cachorros,List<Animal> gatos) {
-        if (cachorros.isEmpty() || gatos.isEmpty()) {
+    public boolean sairSistema() {
+        return false;
+    }
+
+    public void listarAnimais(List<Animal> animais) {
+        if (animais.isEmpty()) {
             System.out.println("Nenhum animal cadastrado.");
         } else {
-
-            System.out.println("Cachorros: \n");
-
-            for (Animal cachorro : cachorros) {
-                System.out.println(cachorro.getNome());
-            }
-
-            System.out.println("\nGatos: \n");
-
-            for (Animal gato : gatos) {
-                System.out.println(gato.getNome());
+            for (Animal animal : animais) {
+                System.out.println(animal.getNome() + " " + animal.getTipo());
             }
         }
     }
 
-
-
-    public void logicaSistema(int resposta, List<Animal> cachorros,List<Animal> gatos, List<Pessoa> adotantes, List<Pessoa> voluntarios) {
+    public void logicaSistema(int resposta, List<Animal> animais, List<Pessoa> adotantes, List<Pessoa> voluntarios) {
         switch (resposta) {
             case 1: {
-                System.out.println("\n=== Sistema de Gerenciamento ===");
-                linha();
+                do {
+                    System.out.println("\n=== Sistema de Gerenciamento ===");
+                    linha();
 
-                System.out.println("1. Cadastrar Animal");
-                System.out.println("2. Cadastrar Adotante");
-                System.out.println("3. Listar Animais");
-                System.out.println("4. Sair");
-                linha();
+                    System.out.println("1. Cadastrar Animal");
+                    System.out.println("2. Cadastrar Adotante");
+                    System.out.println("3. Listar Animais");
+                    System.out.println("4. Sair");
+                    linha();
 
-                System.out.print("Escolha uma opção: ");
-                resposta = scanner.nextInt();
-                scanner.nextLine();
+                    System.out.print("Escolha uma opção: ");
+                    resposta = scanner.nextInt();
+                    scanner.nextLine();
+                } while (resposta > 4 || resposta < 1);
 
                 switch (resposta) {
                     case 1: {
                         System.out.print("Nome: ");
                         String nome = scanner.nextLine();
 
-                        System.out.print("Gênero (M/F): ");
-                        String genero = scanner.nextLine();
+                        System.out.print("Raça: ");
+                        String raca = scanner.nextLine();
 
                         System.out.print("Idade: ");
                         int idade = scanner.nextInt();
                         scanner.nextLine();
 
-                        System.out.print("Raça: ");
-                        String raca = scanner.nextLine();
+                        System.out.print("Gênero (M/F): ");
+                        String genero = scanner.nextLine();
 
-                        System.out.print("Tipo (Gato ou Cachorro): ");
+                        System.out.print("Tipo: ");
                         String tipo = scanner.nextLine().toLowerCase(Locale.ROOT);
 
-                        switch (tipo) {
-                            case "gato": {
-                                gatos.add(new Animal(nome, raca, idade, genero, tipo));
-                                System.out.println("Animal cadastrado com sucesso!");
-                                break;
-                            }
-                            case "cachorro": {
-                                cachorros.add(new Animal(nome, raca, idade, genero, tipo));
-                                System.out.println("Animal cadastrado com sucesso!");
-                                break;
-                            }
-                            default: {
-                                System.out.println("Por favor, digitar apenas \"GATO\" ou \"Cachorro\".");
-                                break;
-                            }
-                        }
-                        break;
+                        animais.add(new Animal(nome, raca, idade, genero, tipo));
                     }
                     case 2: {
                         System.out.print("Nome do Adotante: ");
@@ -121,9 +100,10 @@ public class SistemaPetshop {
                         break;
                     }
                     case 3: {
-                        listarAnimais(cachorros, gatos);
+                        listarAnimais(animais);
                         break;
                     }
+
                     case 4: {
                         //sair
                         return;
@@ -136,17 +116,19 @@ public class SistemaPetshop {
                 break;
             }
             case 2: {
-                System.out.println("\n=== Sistema de Adoção ===");
-                linha();
+                do {
+                    System.out.println("\n=== Sistema de Adoção ===");
+                    linha();
 
-                System.out.println("1. Realizar Adoção");
-                System.out.println("2. Listar Animais");
-                System.out.println("3. Sair");
-                linha();
+                    System.out.println("1. Realizar Adoção");
+                    System.out.println("2. Listar Animais");
+                    System.out.println("3. Sair");
+                    linha();
 
-                System.out.print("Escolha uma opção: ");
-                resposta = scanner.nextInt();
-                scanner.nextLine();
+                    System.out.print("Escolha uma opção: ");
+                    resposta = scanner.nextInt();
+                    scanner.nextLine();
+                } while (resposta > 3 || resposta < 1);
 
                 switch (resposta) {
                     case 1: {
@@ -184,7 +166,7 @@ public class SistemaPetshop {
                         break;
                     }
                     case 2: {
-                        listarAnimais(cachorros, gatos);
+                        listarAnimais(animais);
                         break;
                     }
                     case 3: {
