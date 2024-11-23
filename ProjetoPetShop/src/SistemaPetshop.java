@@ -57,7 +57,6 @@ public class SistemaPetshop {
                     System.out.print("Escolha uma opção: ");
                     resposta = scanner.nextInt();
                     scanner.nextLine();
-                } while (resposta > 4 || resposta < 1);
 
                 switch (resposta) {
                     case 1: {
@@ -79,6 +78,7 @@ public class SistemaPetshop {
 
                         animais.add(new Animal(nome, raca, idade, genero, tipo));
                     }
+                    break;
                     case 2: {
                         System.out.print("Nome do Adotante: ");
                         String nome = scanner.nextLine();
@@ -105,14 +105,16 @@ public class SistemaPetshop {
                     }
 
                     case 4: {
-                        //sair
-                        return;
+                        logicaSistema(menuPrincipal(), animais, adotantes, voluntarios);
+                        break;
                     }
                     default: {
                         System.out.println("Opção inválida.");
+                        break;
                     }
                 }
 
+                } while (resposta != 4 );
                 break;
             }
             case 2: {
@@ -128,41 +130,40 @@ public class SistemaPetshop {
                     System.out.print("Escolha uma opção: ");
                     resposta = scanner.nextInt();
                     scanner.nextLine();
-                } while (resposta > 3 || resposta < 1);
 
-                switch (resposta) {
-                    case 1: {
-                        System.out.println("Em construção!");
-//                        System.out.print("Nome do Animal para adoção: ");
-//                        String nomeAnimal = scanner.nextLine();
-//
-//                        System.out.print("Nome do Adotante: ");
-//                        String nomeAdotante = scanner.nextLine();
-//
-//                        animais = listarAnimais();
-//                        Animal animal = animais.stream()
-//                                .filter(a -> a.getNome().equalsIgnoreCase(nomeAnimal) && !a.isAdotado())
-//                                .findFirst()
-//                                .orElse(null);
-//
-//                        if (animal == null) {
-//                            System.out.println("Animal não encontrado ou já adotado.");
-//                            break;
-//                        }
-//
-//                        Adotante adotante = adotantes.stream()
-//                                .filter(a -> a.getNome().equalsIgnoreCase(nomeAdotante))
-//                                .findFirst()
-//                                .orElse(null);
-//
-//                        if (adotante == null) {
-//                            System.out.println("Adotante não encontrado.");
-//                            break;
-//                        }
-//
-//                        animal.setAdotado(true);
-//                        System.out.println("Adoção realizada! " + adotante.getNome() + " adotou " + animal.getNome());
-//
+                    switch (resposta) {
+                        case 1: {
+                            System.out.println("Em construção!");
+    //                        System.out.print("Nome do Animal para adoção: ");
+    //                        String nomeAnimal = scanner.nextLine();
+    //
+    //                        System.out.print("Nome do Adotante: ");
+    //                        String nomeAdotante = scanner.nextLine();
+    //
+    //                        animais = listarAnimais();
+    //                        Animal animal = animais.stream()
+    //                                .filter(a -> a.getNome().equalsIgnoreCase(nomeAnimal) && !a.isAdotado())
+    //                                .findFirst()
+    //                                .orElse(null);
+    //
+    //                        if (animal == null) {
+    //                            System.out.println("Animal não encontrado ou já adotado.");
+    //                            break;
+    //                        }
+    //
+    //                        Adotante adotante = adotantes.stream()
+    //                                .filter(a -> a.getNome().equalsIgnoreCase(nomeAdotante))
+    //                                .findFirst()
+    //                                .orElse(null);
+    //
+    //                        if (adotante == null) {
+    //                            System.out.println("Adotante não encontrado.");
+    //                            break;
+    //                        }
+    //
+    //                        animal.setAdotado(true);
+    //                        System.out.println("Adoção realizada! " + adotante.getNome() + " adotou " + animal.getNome());
+    //
                         break;
                     }
                     case 2: {
@@ -170,13 +171,14 @@ public class SistemaPetshop {
                         break;
                     }
                     case 3: {
-                        //sair
+                        logicaSistema(menuPrincipal(), animais, adotantes, voluntarios);
                         return;
                     }
                     default: {
                         System.out.println("Opção inválida.");
                     }
                 }
+                } while (resposta != 3);
                 break;
             }
             case 3: {
