@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class SistemaPetshop {
     Scanner scanner = new Scanner(System.in);
+    AnimalService animalService = new AnimalService();
 
     private void linha() {
         System.out.println("-----------------------------------");
@@ -27,21 +28,13 @@ public class SistemaPetshop {
         return resposta;
     }
 
-    public boolean sairSistema() {
-        return false;
-    }
-
-    public void listarAnimais(List<Animal> animais) {
-        if (animais.isEmpty()) {
-            System.out.println("Nenhum animal cadastrado.");
-        } else {
-            for (Animal animal : animais) {
-                System.out.println(animal.getNome() + " " + animal.getTipo());
-            }
+    public void listarAnimais() {
+        for (Animal animal : animalService.listAllAnimals()) {
+            System.out.println(animal.getNome() + " - Adotado: " + animal.isAdotado());
         }
     }
 
-    public void logicaSistema(int resposta, List<Animal> animais, List<Pessoa> adotantes, List<Pessoa> voluntarios) {
+    public void logicaSistema(int resposta, List<Pessoa> adotantes, List<Pessoa> voluntarios) {
         switch (resposta) {
             case 1: {
                 do {
@@ -76,7 +69,7 @@ public class SistemaPetshop {
                         System.out.print("Tipo: ");
                         String tipo = scanner.nextLine().toLowerCase(Locale.ROOT);
 
-                        animais.add(new Animal(nome, raca, idade, genero, tipo));
+                        animalService.addAnimal(nome, raca, idade, genero, tipo);
                     }
                     break;
                     case 2: {
@@ -100,12 +93,12 @@ public class SistemaPetshop {
                         break;
                     }
                     case 3: {
-                        listarAnimais(animais);
+                        listarAnimais();
                         break;
                     }
 
                     case 4: {
-                        logicaSistema(menuPrincipal(), animais, adotantes, voluntarios);
+                        logicaSistema(menuPrincipal(), adotantes, voluntarios);
                         break;
                     }
                     default: {
@@ -167,11 +160,11 @@ public class SistemaPetshop {
                         break;
                     }
                     case 2: {
-                        listarAnimais(animais);
+                        listarAnimais();
                         break;
                     }
                     case 3: {
-                        logicaSistema(menuPrincipal(), animais, adotantes, voluntarios);
+                        logicaSistema(menuPrincipal(), adotantes, voluntarios);
                         return;
                     }
                     default: {
