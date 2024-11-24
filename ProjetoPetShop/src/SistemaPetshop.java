@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class SistemaPetshop {
     Scanner scanner = new Scanner(System.in);
     AnimalService animalService = new AnimalService();
+    AdotanteService adotanteService = new AdotanteService();
 
     private void linha() {
         System.out.println("-----------------------------------");
@@ -43,8 +44,9 @@ public class SistemaPetshop {
 
                     System.out.println("1. Cadastrar Animal");
                     System.out.println("2. Cadastrar Adotante");
-                    System.out.println("3. Listar Animais");
-                    System.out.println("4. Sair");
+                    System.out.println("3. Listar Adotantes");
+                    System.out.println("4. Listar Animais");
+                    System.out.println("5. Sair");
                     linha();
 
                     System.out.print("Escolha uma opção: ");
@@ -88,16 +90,24 @@ public class SistemaPetshop {
                         System.out.print("Contato: ");
                         String contato = scanner.nextLine();
 
-                        adotantes.add(new Adotante(nome, profissao, genero, idade, contato));
+                        adotanteService.addAdotante(nome, profissao, genero, idade, contato);
                         System.out.println("Adotante cadastrado com sucesso!");
                         break;
                     }
+
                     case 3: {
+                        System.out.println("Lista de Adotantes:");
+                        adotanteService.listAllAdotantes().forEach(adotante -> {
+                            System.out.println(adotante.getNome() + " - Contato: " + adotante.getContato());
+                        });
+                    }
+
+                    case 4: {
                         listarAnimais();
                         break;
                     }
 
-                    case 4: {
+                    case 5: {
                         logicaSistema(menuPrincipal(), adotantes, voluntarios);
                         break;
                     }
