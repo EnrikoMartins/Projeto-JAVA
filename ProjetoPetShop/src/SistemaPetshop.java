@@ -30,9 +30,18 @@ public class SistemaPetshop {
     }
 
     public void listarAnimais() {
+        linha();
         for (Animal animal : animalService.listAllAnimals()) {
             System.out.println(animal.getNome() + " - Adotado: " + animal.isAdotado());
         }
+    }
+
+    public void listarAdotantes() {
+        linha();
+        System.out.println("Lista de Adotantes:");
+        adotanteService.listAllAdotantes().forEach(adotante -> {
+            System.out.println(adotante.getNome() + " - Contato: " + adotante.getContato());
+        });
     }
 
     public void logicaSistema(int resposta, List<Pessoa> adotantes, List<Pessoa> voluntarios) {
@@ -46,7 +55,9 @@ public class SistemaPetshop {
                     System.out.println("2. Cadastrar Adotante");
                     System.out.println("3. Listar Adotantes");
                     System.out.println("4. Listar Animais");
-                    System.out.println("5. Sair");
+                    System.out.println("5. Remover Animal");
+                    System.out.println("6. Remover Adotante");
+                    System.out.println("7. Sair");
                     linha();
 
                     System.out.print("Escolha uma opção: ");
@@ -96,10 +107,8 @@ public class SistemaPetshop {
                     }
 
                     case 3: {
-                        System.out.println("Lista de Adotantes:");
-                        adotanteService.listAllAdotantes().forEach(adotante -> {
-                            System.out.println(adotante.getNome() + " - Contato: " + adotante.getContato());
-                        });
+                        listarAdotantes();
+                        break;
                     }
 
                     case 4: {
@@ -108,6 +117,27 @@ public class SistemaPetshop {
                     }
 
                     case 5: {
+                        listarAnimais();
+                        linha();
+                        System.out.println("Qual o id do animal a ser removido? ");
+                        int idRemovido = scanner.nextInt();
+                        animalService.deleteAnimal(idRemovido);
+                        linha();
+                        System.out.println("Animal removido com sucesso");
+                        break;
+                    }
+
+                    case 6: {
+                        listarAdotantes();
+                        linha();
+                        System.out.println("Qual o id da Adotante a ser removido? ");
+                        int idRemovido = scanner.nextInt();
+                        adotanteService.deleteAdotante(idRemovido);
+                        System.out.println("Adotante removido com sucesso");
+                        break;
+                    }
+
+                    case 7: {
                         logicaSistema(menuPrincipal(), adotantes, voluntarios);
                         break;
                     }
