@@ -44,7 +44,7 @@ public class SistemaPetshop {
         });
     }
 
-    public void logicaSistema(int resposta, List<Pessoa> adotantes, List<Pessoa> voluntarios) {
+    public void logicaSistema(int resposta, List<Pessoa> voluntarios) {
         switch (resposta) {
             case 1: {
                 do {
