@@ -12,4 +12,12 @@ public class Adotante extends Pessoa {
      public void setAnimalAdotado(Animal animalAdotado) {
         this.animalAdotado = animalAdotado;
     }
+
+    public String getContato() {
+        return contato;
+    }
+
+    public void setContato(String contato) {
+        this.contato = contato;
+    }
 }

@@ -70,8 +70,8 @@ public class SistemaPetshop {
                         String tipo = scanner.nextLine().toLowerCase(Locale.ROOT);
 
                         animalService.addAnimal(nome, raca, idade, genero, tipo);
+                        break;
                     }
-                    break;
                     case 2: {
                         System.out.print("Nome do Adotante: ");
                         String nome = scanner.nextLine();
