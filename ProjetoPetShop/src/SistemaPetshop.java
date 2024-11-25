@@ -32,7 +32,7 @@ public class SistemaPetshop {
     public void listarAnimais() {
         linha();
         for (Animal animal : animalService.listAllAnimals()) {
-            System.out.println(animal.getNome() + " - Adotado: " + animal.isAdotado());
+            System.out.println(animal.getNome() + " - Adotado: " + (animal.isAdotado() ? "Sim":"Não"));
         }
     }
 
@@ -138,7 +138,7 @@ public class SistemaPetshop {
                     }
 
                     case 7: {
-                        logicaSistema(menuPrincipal(), adotantes, voluntarios);
+                        logicaSistema(menuPrincipal(), voluntarios);
                         break;
                     }
                     default: {
@@ -204,7 +204,7 @@ public class SistemaPetshop {
                         break;
                     }
                     case 3: {
-                        logicaSistema(menuPrincipal(), adotantes, voluntarios);
+                        logicaSistema(menuPrincipal(), voluntarios);
                         return;
                     }
                     default: {
