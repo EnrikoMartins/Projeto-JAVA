@@ -147,7 +147,7 @@ public class SistemaPetshop {
                     }
                 }
 
-                } while (resposta != 4 );
+                } while (resposta != 7);
                 break;
             }
             case 2: {
