@@ -32,7 +32,18 @@ public class SistemaPetshop {
     public void listarAnimais() {
         linha();
         for (Animal animal : animalService.listAllAnimals()) {
-            System.out.println(animal.getNome() + " - Adotado: " + (animal.isAdotado() ? "Sim":"Não"));
+            System.out.println(animal.getId() + " - " + animal.getNome() + " - Adotado: " + (animal.isAdotado() ? "Sim":"Não"));
+        }
+        linha();
+
+        System.out.print("Ver mais informções de qual animal? ");
+        int maisInformacoes = scanner.nextInt();
+        linha();
+
+        for (Animal animal : animalService.listAllAnimals()) {
+            if (animal.getId() == maisInformacoes) {
+                System.out.println(animal);
+            }
         }
     }
 
@@ -44,7 +55,7 @@ public class SistemaPetshop {
         });
     }
 
-    public void logicaSistema(int resposta, List<Pessoa> voluntarios) {
+    public void logicaSistema(int resposta) {
         switch (resposta) {
             case 1: {
                 do {
@@ -64,88 +75,88 @@ public class SistemaPetshop {
                     resposta = scanner.nextInt();
                     scanner.nextLine();
 
-                switch (resposta) {
-                    case 1: {
-                        System.out.print("Nome: ");
-                        String nome = scanner.nextLine();
+                    switch (resposta) {
+                        case 1: {
+                            System.out.print("Nome: ");
+                            String nome = scanner.nextLine();
 
-                        System.out.print("Raça: ");
-                        String raca = scanner.nextLine();
+                            System.out.print("Raça: ");
+                            String raca = scanner.nextLine();
 
-                        System.out.print("Idade: ");
-                        int idade = scanner.nextInt();
-                        scanner.nextLine();
+                            System.out.print("Idade: ");
+                            int idade = scanner.nextInt();
+                            scanner.nextLine();
 
-                        System.out.print("Gênero (M/F): ");
-                        String genero = scanner.nextLine();
+                            System.out.print("Gênero (M/F): ");
+                            String genero = scanner.nextLine();
 
-                        System.out.print("Tipo: ");
-                        String tipo = scanner.nextLine().toLowerCase(Locale.ROOT);
+                            System.out.print("Tipo: ");
+                            String tipo = scanner.nextLine().toLowerCase(Locale.ROOT);
 
-                        animalService.addAnimal(nome, raca, idade, genero, tipo);
-                        break;
+                            animalService.addAnimal(nome, raca, idade, genero, tipo);
+                            break;
+                        }
+                        case 2: {
+                            System.out.print("Nome do Adotante: ");
+                            String nome = scanner.nextLine();
+
+                            System.out.print("Profissão: ");
+                            String profissao = scanner.nextLine();
+
+                            System.out.print("Gênero: ");
+                            String genero = scanner.nextLine();
+
+                            System.out.print("Idade: ");
+                            int idade = scanner.nextInt();
+
+                            System.out.print("Contato: ");
+                            String contato = scanner.nextLine();
+
+                            adotanteService.addAdotante(nome, profissao, genero, idade, contato);
+                            System.out.println("Adotante cadastrado com sucesso!");
+                            break;
+                        }
+
+                        case 3: {
+                            listarAdotantes();
+                            break;
+                        }
+
+                        case 4: {
+                            listarAnimais();
+                            break;
+                        }
+
+                        case 5: {
+                            listarAnimais();
+                            linha();
+                            System.out.println("Qual o id do animal a ser removido? ");
+                            int idRemovido = scanner.nextInt();
+                            animalService.deleteAnimal(idRemovido);
+                            linha();
+                            System.out.println("Animal removido com sucesso");
+                            break;
+                        }
+
+                        case 6: {
+                            listarAdotantes();
+                            linha();
+                            System.out.println("Qual o id da Adotante a ser removido? ");
+                            int idRemovido = scanner.nextInt();
+                            adotanteService.deleteAdotante(idRemovido);
+                            System.out.println("Adotante removido com sucesso");
+                            break;
+                        }
+
+                        case 7: {
+                            logicaSistema(menuPrincipal());
+                            break;
+                        }
+                        default: {
+                            System.out.println("Opção inválida.");
+                            break;
+                        }
                     }
-                    case 2: {
-                        System.out.print("Nome do Adotante: ");
-                        String nome = scanner.nextLine();
-
-                        System.out.print("Profissão: ");
-                        String profissao = scanner.nextLine();
-
-                        System.out.print("Gênero: ");
-                        String genero = scanner.nextLine();
-
-                        System.out.print("Idade: ");
-                        int idade = scanner.nextInt();
-
-                        System.out.print("Contato: ");
-                        String contato = scanner.nextLine();
-
-                        adotanteService.addAdotante(nome, profissao, genero, idade, contato);
-                        System.out.println("Adotante cadastrado com sucesso!");
-                        break;
-                    }
-
-                    case 3: {
-                        listarAdotantes();
-                        break;
-                    }
-
-                    case 4: {
-                        listarAnimais();
-                        break;
-                    }
-
-                    case 5: {
-                        listarAnimais();
-                        linha();
-                        System.out.println("Qual o id do animal a ser removido? ");
-                        int idRemovido = scanner.nextInt();
-                        animalService.deleteAnimal(idRemovido);
-                        linha();
-                        System.out.println("Animal removido com sucesso");
-                        break;
-                    }
-
-                    case 6: {
-                        listarAdotantes();
-                        linha();
-                        System.out.println("Qual o id da Adotante a ser removido? ");
-                        int idRemovido = scanner.nextInt();
-                        adotanteService.deleteAdotante(idRemovido);
-                        System.out.println("Adotante removido com sucesso");
-                        break;
-                    }
-
-                    case 7: {
-                        logicaSistema(menuPrincipal(), voluntarios);
-                        break;
-                    }
-                    default: {
-                        System.out.println("Opção inválida.");
-                        break;
-                    }
-                }
 
                 } while (resposta != 7);
                 break;
@@ -167,50 +178,20 @@ public class SistemaPetshop {
                     switch (resposta) {
                         case 1: {
                             System.out.println("Em construção!");
-    //                        System.out.print("Nome do Animal para adoção: ");
-    //                        String nomeAnimal = scanner.nextLine();
-    //
-    //                        System.out.print("Nome do Adotante: ");
-    //                        String nomeAdotante = scanner.nextLine();
-    //
-    //                        animais = listarAnimais();
-    //                        Animal animal = animais.stream()
-    //                                .filter(a -> a.getNome().equalsIgnoreCase(nomeAnimal) && !a.isAdotado())
-    //                                .findFirst()
-    //                                .orElse(null);
-    //
-    //                        if (animal == null) {
-    //                            System.out.println("Animal não encontrado ou já adotado.");
-    //                            break;
-    //                        }
-    //
-    //                        Adotante adotante = adotantes.stream()
-    //                                .filter(a -> a.getNome().equalsIgnoreCase(nomeAdotante))
-    //                                .findFirst()
-    //                                .orElse(null);
-    //
-    //                        if (adotante == null) {
-    //                            System.out.println("Adotante não encontrado.");
-    //                            break;
-    //                        }
-    //
-    //                        animal.setAdotado(true);
-    //                        System.out.println("Adoção realizada! " + adotante.getNome() + " adotou " + animal.getNome());
-    //
-                        break;
+                            break;
+                        }
+                        case 2: {
+                            listarAnimais();
+                            break;
+                        }
+                        case 3: {
+                            logicaSistema(menuPrincipal());
+                            return;
+                        }
+                        default: {
+                            System.out.println("Opção inválida.");
+                        }
                     }
-                    case 2: {
-                        listarAnimais();
-                        break;
-                    }
-                    case 3: {
-                        logicaSistema(menuPrincipal(), voluntarios);
-                        return;
-                    }
-                    default: {
-                        System.out.println("Opção inválida.");
-                    }
-                }
                 } while (resposta != 3);
                 break;
             }
