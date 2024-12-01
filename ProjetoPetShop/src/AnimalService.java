@@ -9,7 +9,7 @@ public class AnimalService {
     }
 
     /**
-     * Adiciona um novo animal ao banco de dados.
+      Adiciona um novo animal ao banco de dados.
      * Verifica se os dados são válidos antes de delegar ao DAO.
      */
     public void addAnimal(String nome, String raca, int idade, String genero, String tipo) {
