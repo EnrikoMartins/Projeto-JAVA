@@ -53,19 +53,10 @@ public class AdotanteService {
             throw new IllegalArgumentException("Todos os campos do adotante devem ser válidos.");
         }
 
+        Adotante adotante = new Adotante(nome, profissao, genero, idade, contato);
+        adotante.setId(id);
+
         try {
-            Adotante adotante = adotanteDAO.findById(id);
-            if (adotante == null) {
-                System.err.println("Adotante com ID " + id + " não encontrado.");
-                return;
-            }
-
-            adotante.setNome(nome);
-            adotante.setProfissao(profissao);
-            adotante.setGenero(genero);
-            adotante.setIdade(idade);
-            adotante.setContato(contato);
-
             adotanteDAO.update(adotante);
             System.out.println("Adotante atualizado com sucesso!");
         } catch (SQLException e) {

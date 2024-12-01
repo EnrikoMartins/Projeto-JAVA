@@ -55,7 +55,6 @@ public class AnimalService {
         }
 
         Animal animal = new Animal(nome, raca, idade, genero, tipo);
-        animal.getid();
         animal.setId(id);
         animal.setAdotado(adotado);
 

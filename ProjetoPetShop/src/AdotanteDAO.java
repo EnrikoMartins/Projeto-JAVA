@@ -31,6 +31,7 @@ public class AdotanteDAO {
                         rs.getInt("idade"),
                         rs.getString("contato")
                 );
+                adotante.setId(rs.getInt("id"));
                 adotantes.add(adotante);
             }
         }
@@ -58,25 +59,5 @@ public class AdotanteDAO {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         }
-    }
-
-    public Adotante findById(int id) throws SQLException {
-        String sql = "SELECT * FROM Adotante WHERE id = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    return new Adotante(
-                            rs.getString("nome"),
-                            rs.getString("profissao"),
-                            rs.getString("genero"),
-                            rs.getInt("idade"),
-                            rs.getString("contato")
-                    );
-                }
-            }
-        }
-        return null; // Retorna null se não encontrar o adotante
     }
 }
