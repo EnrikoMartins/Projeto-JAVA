@@ -8,10 +8,6 @@ public class AnimalService {
         this.animalDAO = new AnimalDAO();
     }
 
-    /**
-      Adiciona um novo animal ao banco de dados.
-     * Verifica se os dados são válidos antes de delegar ao DAO.
-     */
     public void addAnimal(String nome, String raca, int idade, String genero, String tipo) {
         if (nome == null || nome.isEmpty() ||
                 raca == null || raca.isEmpty() ||
@@ -30,9 +26,7 @@ public class AnimalService {
         }
     }
 
-    /**
-     * Lista todos os animais do banco de dados.
-     */
+
     public List<Animal> listAllAnimals() {
         try {
             return animalDAO.readAll();
@@ -42,9 +36,6 @@ public class AnimalService {
         }
     }
 
-    /**
-     * Atualiza os dados de um animal existente.
-     */
     public void updateAnimal(int id, String nome, String raca, int idade, String genero, String tipo, boolean adotado) {
         if (id <= 0 || nome == null || nome.isEmpty() ||
                 raca == null || raca.isEmpty() ||
@@ -66,9 +57,6 @@ public class AnimalService {
         }
     }
 
-    /**
-     * Remove um animal do banco de dados pelo ID.
-     */
     public void deleteAnimal(int id) {
         if (id <= 0) {
             throw new IllegalArgumentException("O ID do animal deve ser válido.");
@@ -82,9 +70,6 @@ public class AnimalService {
         }
     }
 
-    /**
-     * Atualiza o status de adoção de um animal pelo ID.
-     */
     public void updateAdoptionStatus(int id, boolean adotado) {
         if (id <= 0) {
             throw new IllegalArgumentException("O ID do animal deve ser válido.");

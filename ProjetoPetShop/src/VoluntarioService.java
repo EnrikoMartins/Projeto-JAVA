@@ -8,10 +8,6 @@ public class VoluntarioService {
         this.voluntarioDAO = new VoluntarioDAO();
     }
 
-    /**
-     * Adiciona um novo voluntário ao banco de dados.
-     * Valida os dados antes de delegar ao DAO.
-     */
     public void addVoluntario(String nome, String profissao, String genero, int idade, String funcao) {
         if (nome == null || nome.isEmpty() ||
                 profissao == null || profissao.isEmpty() ||
@@ -30,9 +26,7 @@ public class VoluntarioService {
         }
     }
 
-    /**
-     * Lista todos os voluntários do banco de dados.
-     */
+
     public List<Voluntario> listAllVoluntarios() {
         try {
             return voluntarioDAO.readAll();
@@ -42,9 +36,7 @@ public class VoluntarioService {
         }
     }
 
-    /**
-     * Atualiza os dados de um voluntário existente.
-     */
+
     public void updateVoluntario(int id, String nome, String profissao, String genero, int idade, String funcao) {
         if (id <= 0 || nome == null || nome.isEmpty() ||
                 profissao == null || profissao.isEmpty() ||
@@ -65,9 +57,6 @@ public class VoluntarioService {
         }
     }
 
-    /**
-     * Remove um voluntário do banco de dados pelo ID.
-     */
     public void deleteVoluntario(int id) {
         if (id <= 0) {
             throw new IllegalArgumentException("O ID do voluntário deve ser válido.");

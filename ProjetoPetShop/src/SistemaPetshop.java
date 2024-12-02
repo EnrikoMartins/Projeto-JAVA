@@ -65,20 +65,20 @@ public class SistemaPetshop {
                         switch (respostaAreaAnimal) {
                             case 1: {
                                 System.out.print("Nome: ");
-                                String nome = scanner.nextLine();
+                                String nome = scanner.nextLine().strip();
 
                                 System.out.print("Raça: ");
-                                String raca = scanner.nextLine();
+                                String raca = scanner.nextLine().strip();
 
                                 System.out.print("Idade: ");
                                 int idade = scanner.nextInt();
                                 scanner.nextLine();
 
                                 System.out.print("Gênero (M/F): ");
-                                String genero = scanner.nextLine();
+                                String genero = scanner.nextLine().strip();
 
                                 System.out.print("Tipo: ");
-                                String tipo = scanner.nextLine().toLowerCase(Locale.ROOT);
+                                String tipo = scanner.nextLine().toLowerCase(Locale.ROOT).strip();
 
                                 animalService.addAnimal(nome, raca, idade, genero, tipo);
                                 break;
@@ -122,7 +122,7 @@ public class SistemaPetshop {
                                     switch (alteracao) {
                                         case 1: {
                                             System.out.println("Novo nome: ");
-                                            String novoNome = scanner.nextLine();
+                                            String novoNome = scanner.nextLine().strip();
 
                                             for (Animal animal : animalService.listAllAnimals()) {
                                                 if (animal.getId() == idAtualizacao) {
@@ -134,7 +134,7 @@ public class SistemaPetshop {
                                         }
                                         case 2: {
                                             System.out.println("Nova Raça: ");
-                                            String novaRaca = scanner.nextLine();
+                                            String novaRaca = scanner.nextLine().strip();
 
                                             for (Animal animal : animalService.listAllAnimals()) {
                                                 if (animal.getId() == idAtualizacao) {
@@ -158,7 +158,7 @@ public class SistemaPetshop {
                                         }
                                         case 4: {
                                             System.out.println("Novo Gênero: ");
-                                            String novoGenero = scanner.nextLine();
+                                            String novoGenero = scanner.nextLine().strip();
 
                                             for (Animal animal : animalService.listAllAnimals()) {
                                                 if (animal.getId() == idAtualizacao) {
@@ -170,7 +170,7 @@ public class SistemaPetshop {
                                         }
                                         case 5: {
                                             System.out.println("Novo Tipo de animal: ");
-                                            String novoTipo = scanner.nextLine();
+                                            String novoTipo = scanner.nextLine().strip();
 
                                             for (Animal animal : animalService.listAllAnimals()) {
                                                 if (animal.getId() == idAtualizacao) {
@@ -202,8 +202,10 @@ public class SistemaPetshop {
                             case 4: {
                                 listarAnimais();
                                 linha();
+
                                 System.out.println("Qual o id do animal a ser removido? ");
                                 int idRemovido = scanner.nextInt();
+
                                 animalService.deleteAnimal(idRemovido);
                                 break;
                             }
@@ -659,6 +661,7 @@ public class SistemaPetshop {
     public void listarAdotantes() {
         linha();
         System.out.println("Lista de Adotantes:");
+
         for (Adotante adotante : adotanteService.listAllAdotantes()) {
             System.out.println(adotante.getId() + " - " + adotante.getNome() + " - Contato: " + adotante.getContato());
         }
@@ -691,11 +694,19 @@ public class SistemaPetshop {
         }
     }
 
+    public void listarDadosAdotanteEspecifico(int idDeAdotante) {
+        for (Adotante adotante : adotanteService.listAllAdotantes()) {
+            if (adotante.getId() == idDeAdotante) {
+                System.out.println(adotante);
+            }
+        }
+    }
+
     public void listarVoluntarios() {
         linha();
         System.out.println("Lista de Voluntários:");
         for (Voluntario voluntario: voluntarioService.listAllVoluntarios()) {
-            System.out.println(voluntario.getId() + " - " + voluntario.getNome() + " - Contato: " + voluntario.getFuncao());
+            System.out.println(voluntario.getId() + " - " + voluntario.getNome() + " - função: " + voluntario.getFuncao());
         }
         linha();
     }
@@ -736,14 +747,6 @@ public class SistemaPetshop {
         }
     }
 
-    public void listarDadosAdotanteEspecifico(int idDeAdotante) {
-        for (Adotante adotante : adotanteService.listAllAdotantes()) {
-            if (adotante.getId() == idDeAdotante) {
-                System.out.println(adotante);
-            }
-        }
-    }
-
     public void logicaSistema(int respostaDoMenuPrincipal) {
         switch (respostaDoMenuPrincipal) {
             case 1: {
@@ -761,7 +764,7 @@ public class SistemaPetshop {
             }
             default: {
                 System.out.println("Opção inválida.");
-                break;
+                logicaSistema(menuPrincipal());
             }
         }
     }

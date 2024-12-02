@@ -8,9 +8,6 @@ public class AdotanteService {
         this.adotanteDAO = new AdotanteDAO();
     }
 
-    /**
-     * Adiciona um novo adotante.
-     */
     public void addAdotante(String nome, String profissao, String genero, int idade, String contato) {
         if (nome == null || nome.isEmpty() ||
                 profissao == null || profissao.isEmpty() ||
@@ -29,9 +26,7 @@ public class AdotanteService {
         }
     }
 
-    /**
-     * Lista todos os adotantes.
-     */
+
     public List<Adotante> listAllAdotantes() {
         try {
             return adotanteDAO.readAll();
@@ -41,9 +36,7 @@ public class AdotanteService {
         }
     }
 
-    /**
-     * Atualiza os dados de um adotante.
-     */
+
     public void updateAdotante(int id, String nome, String profissao, String genero, int idade, String contato) {
         if (id <= 0 || nome == null || nome.isEmpty() ||
                 profissao == null || profissao.isEmpty() ||
@@ -64,9 +57,7 @@ public class AdotanteService {
         }
     }
 
-    /**
-     * Remove um adotante pelo ID.
-     */
+
     public void deleteAdotante(int id) {
         if (id <= 0) {
             throw new IllegalArgumentException("O ID do adotante deve ser válido.");

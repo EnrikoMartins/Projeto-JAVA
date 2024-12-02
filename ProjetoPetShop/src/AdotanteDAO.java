@@ -47,7 +47,7 @@ public class AdotanteDAO {
             stmt.setString(3, adotante.getGenero());
             stmt.setInt(4, adotante.getIdade());
             stmt.setString(5, adotante.getContato());
-            stmt.setInt(6, adotante.getId()); // Id deve ser implementado na classe Adotante
+            stmt.setInt(6, adotante.getId());
             stmt.executeUpdate();
         }
     }
