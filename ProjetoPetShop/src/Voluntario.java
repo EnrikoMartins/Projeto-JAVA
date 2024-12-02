@@ -18,4 +18,11 @@ public class Voluntario extends Pessoa{
     public void setFuncao(String funcao) {
         this.funcao = funcao;
     }
-}
+
+    public String toString() {
+        return "Nome: " + getNome() +
+                "\nProfisão: " + getProfissao() +
+                "\nGênero: " + getGenero() +
+                "\nIdade: " + getIdade() + " anos" +
+                "\nFunção: " + getFuncao();
+    }}

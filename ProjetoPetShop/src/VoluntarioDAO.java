@@ -19,7 +19,7 @@ public class VoluntarioDAO {
 
     public List<Voluntario> readAll() throws SQLException {
         List<Voluntario> voluntarios = new ArrayList<>();
-        String sql = "SELECT * FROM Adotante";
+        String sql = "SELECT * FROM Voluntario";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
@@ -39,7 +39,7 @@ public class VoluntarioDAO {
     }
 
     public void update(Voluntario voluntario) throws SQLException {
-        String sql = "UPDATE Voluntario SET nome = ?, profissao = ?, genero = ?, idade = ?, funcao = ?, WHERE id = ?";
+        String sql = "UPDATE Voluntario SET nome = ?, profissao = ?, genero = ?, idade = ?, funcao = ? WHERE id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, voluntario.getNome());
